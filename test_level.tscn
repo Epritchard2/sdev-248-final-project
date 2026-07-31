@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="1_gojnm"]
 [ext_resource type="PackedScene" uid="uid://cybk7rki2t6dh" path="res://zombie.tscn" id="2_1c2mv"]
+[ext_resource type="PackedScene" uid="uid://hkkauhlt680a" path="res://hud.tscn" id="3_f7g2b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
 size = Vector2(1381, 69)
@@ -27,3 +28,5 @@ position = Vector2(105, 168)
 
 [node name="Zombie" parent="." unique_id=1676214616 instance=ExtResource("2_1c2mv")]
 position = Vector2(806, 194)
+
+[node name="HUD" parent="." unique_id=1883585838 instance=ExtResource("3_f7g2b")]
