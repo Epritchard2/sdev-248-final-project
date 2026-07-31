@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://beyoq5yiecyqd"]
+
+[ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="1_gojnm"]
+[ext_resource type="PackedScene" uid="uid://cybk7rki2t6dh" path="res://zombie.tscn" id="2_1c2mv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
+size = Vector2(1381, 69)
+
+[node name="Node2D" type="Node2D" unique_id=2116308120]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=68065453]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=372748714]
+position = Vector2(694, 253)
+shape = SubResource("RectangleShape2D_xtoym")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D" unique_id=1039561253]
+offset_left = -696.0
+offset_top = -36.0
+offset_right = 687.0
+offset_bottom = 38.0
+color = Color(0.7450463, 0.4054454, 0.030926703, 1)
+
+[node name="Player" parent="." unique_id=973876248 instance=ExtResource("1_gojnm")]
+position = Vector2(105, 168)
+
+[node name="Zombie" parent="." unique_id=1676214616 instance=ExtResource("2_1c2mv")]
+position = Vector2(806, 194)
