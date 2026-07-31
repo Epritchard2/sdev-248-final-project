@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://cseoqmo4iktx0"]
+
+[ext_resource type="Script" uid="uid://dkkek1ttlj77o" path="res://boss_projectile.gd" id="1_l2kl3"]
+[ext_resource type="Texture2D" uid="uid://dt1cola0h3gur" path="res://Assets/Mountain Depths/Mountain Depths assets/Characters/Boss/boss atk 3 projectile-1-falling anim.png" id="2_bnrtf"]
+[ext_resource type="Texture2D" uid="uid://chnyv2sjn0jip" path="res://Assets/Mountain Depths/Mountain Depths assets/Characters/Boss/boss atk 3 projectile-1.png" id="3_g4ry7"]
+[ext_resource type="Texture2D" uid="uid://cwj0kbrfiadiq" path="res://Assets/Mountain Depths/Mountain Depths assets/Characters/Boss/boss atk 3 projectile-2.png" id="4_ta3bn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4ry7"]
+atlas = ExtResource("4_ta3bn")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncgrc"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(480, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwv3h"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(576, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y373e"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(672, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vmec"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(768, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxv2l"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(864, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dhjo"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(960, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byqa2"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(1056, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iybv"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(1152, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hduun"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(1248, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ai5a"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(1344, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sy54"]
+atlas = ExtResource("2_bnrtf")
+region = Rect2(1440, 0, 96, 224)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5muvl"]
+atlas = ExtResource("3_g4ry7")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udc01"]
+atlas = ExtResource("4_ta3bn")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x6yq"]
+atlas = ExtResource("4_ta3bn")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nuie"]
+atlas = ExtResource("3_g4ry7")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_we8h1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4ry7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncgrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwv3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y373e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vmec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxv2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dhjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byqa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iybv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hduun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ai5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sy54")
+}],
+"loop": 0,
+"name": &"falling",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": 0,
+"name": &"fizzle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5muvl")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_udc01")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_3x6yq")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_5nuie")
+}],
+"loop": 1,
+"name": &"hover",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g4ry7"]
+radius = 6.0
+
+[node name="BossProjectile" type="Area2D" unique_id=1575065678]
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_l2kl3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2023710429]
+sprite_frames = SubResource("SpriteFrames_we8h1")
+animation = &"falling"
+frame = 11
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=477249265]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_g4ry7")

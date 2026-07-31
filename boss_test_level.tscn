@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c0hqm5uddb7w7"]
+
+[ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="1_73p4q"]
+[ext_resource type="PackedScene" uid="uid://dleeoh1wgcwfi" path="res://boss.tscn" id="2_esrdm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
+size = Vector2(3816.5, 425)
+
+[node name="node2d" type="Node2D" unique_id=571165199]
+scale = Vector2(1.025, 1.025)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=879538230]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1771998033]
+position = Vector2(1587.3171, 882.92676)
+shape = SubResource("RectangleShape2D_xtoym")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D/CollisionShape2D" unique_id=1746985705]
+offset_left = -1922.9268
+offset_top = -212.68282
+offset_right = 1907.8232
+offset_bottom = 232.31718
+color = Color(0, 0, 0, 1)
+
+[node name="Player" parent="." unique_id=973876248 instance=ExtResource("1_73p4q")]
+position = Vector2(95.60977, 617.56104)
+
+[node name="Boss" parent="." unique_id=1017396505 instance=ExtResource("2_esrdm")]
+position = Vector2(1013.6586, 616.5854)
+melee_cooldown = 1.9
+atk3_shot_interval = 0.9

@@ -252,6 +252,22 @@ region = Rect2(1344, 0, 192, 128)
 atlas = ExtResource("7_ivps1")
 region = Rect2(576, 0, 192, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("7_ivps1")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("7_ivps1")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("7_ivps1")
+region = Rect2(1152, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("7_ivps1")
+region = Rect2(1344, 0, 192, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_feeoa"]
 atlas = ExtResource("7_ivps1")
 region = Rect2(0, 0, 192, 128)
@@ -492,10 +508,22 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_nvl01")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"jump",
 "speed": 12.0
 }, {
@@ -538,6 +566,8 @@ size = Vector2(45, 25.25)
 [node name="Player" type="CharacterBody2D" unique_id=973876248 groups=["player"]]
 collision_mask = 6
 script = ExtResource("1_4flbx")
+dash_speed = 445.0
+dash_time = 0.3
 light_knockback = 250.0
 heavy_knockback = 600.0
 recoil_factor = 0.3
@@ -550,8 +580,8 @@ heavy_hitbox_x = 25.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1935695601]
 sprite_frames = SubResource("SpriteFrames_xtoym")
-animation = &"attack_light"
-frame = 13
+animation = &"jump"
+frame = 4
 frame_progress = 1.0
 offset = Vector2(15, -10)
 

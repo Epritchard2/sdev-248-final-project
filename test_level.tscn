@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://hkkauhlt680a" path="res://hud.tscn" id="3_f7g2b"]
 [ext_resource type="PackedScene" uid="uid://6hw3r0bl56el" path="res://skeleton.tscn" id="4_4ptq8"]
 [ext_resource type="PackedScene" uid="uid://dp5x11hixir30" path="res://skeleton_mage.tscn" id="5_sb12i"]
+[ext_resource type="PackedScene" uid="uid://casdrt4vph4fa" path="res://pot_enemy.tscn" id="6_gbhdq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
 size = Vector2(3052.5, 81.5)
@@ -33,6 +34,8 @@ offset_bottom = 49.75
 color = Color(0.7450463, 0.4054454, 0.030926703, 1)
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=2101988201]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=924143648]
 position = Vector2(-66, 101)
@@ -40,6 +43,8 @@ shape = SubResource("RectangleShape2D_j35ka")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="." unique_id=128020957]
 position = Vector2(2995, 81)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3" unique_id=1527110529]
 position = Vector2(147, 55)
@@ -48,13 +53,16 @@ shape = SubResource("RectangleShape2D_cga4h")
 [node name="HUD" parent="." unique_id=1883585838 instance=ExtResource("3_f7g2b")]
 
 [node name="Player" parent="." unique_id=973876248 instance=ExtResource("1_gojnm")]
-position = Vector2(105, 168)
+position = Vector2(289, 182)
 
 [node name="Zombie" parent="." unique_id=1676214616 instance=ExtResource("2_1c2mv")]
-position = Vector2(1482, 201)
+position = Vector2(2272, 199)
 
 [node name="Skeleton" parent="." unique_id=1625371294 instance=ExtResource("4_4ptq8")]
-position = Vector2(1693, 187)
+position = Vector2(2014, 186)
 
 [node name="SkeletonMage" parent="." unique_id=834559163 instance=ExtResource("5_sb12i")]
-position = Vector2(713, 176)
+position = Vector2(2081, 180)
+
+[node name="PotEnemy" parent="." unique_id=1458701871 instance=ExtResource("6_gbhdq")]
+position = Vector2(901, 189)

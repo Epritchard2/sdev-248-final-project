@@ -11,6 +11,7 @@ const ANIM_LIGHT  := "attack_light"
 const ANIM_HEAVY  := "attack_heavy"
 const ANIM_HURT   := "hurt"
 const ANIM_DEATH  := "death"
+const ANIM_DASH   := "dash"        # optional dash anim; falls back to run/jump if missing
 
 # --- Movement tunables ---
 @export var mass: float = 1.0            # used by F = ma so knockback/feel scale with it
@@ -20,6 +21,13 @@ const ANIM_DEATH  := "death"
 @export var friction: float = 2000.0
 @export var jump_velocity: float = -430.0
 @export var gravity: float = 1200.0
+
+# --- Dash tunables ---
+@export var dash_speed: float = 460.0        # burst speed during the dash (much faster than run)
+@export var dash_time: float = 0.18          # how long the burst lasts
+@export var dash_cooldown: float = 0.5       # min time between dashes
+@export var dash_cancel_gravity: bool = true # true = flat horizontal dash (no falling mid-dash)
+@export var use_dash_anim: bool = false      # play ANIM_DASH if your SpriteFrames has one
 
 # --- Combat tunables ---
 @export var has_weapon: bool = true      # armed from the start
@@ -60,8 +68,12 @@ var health: int = 0
 var is_attacking: bool = false
 var is_dead: bool = false
 var is_hurt: bool = false
+var is_dashing: bool = false
 var hurt_timer: float = 0.0
 var knockback_hold: float = 0.0
+var dash_timer: float = 0.0
+var dash_cooldown_timer: float = 0.0
+var dash_dir: int = 1                     # locked-in direction for the current dash
 var attack_timer: float = 0.0
 var attack_elapsed: float = 0.0
 var active_start: float = 0.0
@@ -89,6 +101,17 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			velocity.y += gravity * delta
 		move_and_slide()
+		return
+
+	dash_cooldown_timer = maxf(0.0, dash_cooldown_timer - delta)
+
+	# Dashing overrides normal gravity/movement for its short burst. Handle it
+	# first so nothing else fights the burst velocity.
+	if is_dashing:
+		_process_dash(delta)
+		move_and_slide()
+		_resolve_body_collisions()   # 3rd law
+		_update_animation()
 		return
 
 	# Newton's 2nd law (F = ma): gravity is a constant acceleration each frame.
@@ -134,12 +157,47 @@ func _process_normal(delta: float) -> void:
 		velocity.y = jump_velocity
 		if jump_sfx: jump_sfx.play()
 
+	# Dash: works on the ground OR in the air, off cooldown, not mid-swing.
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer == 0.0:
+		_start_dash()
+		return
+
 	# Attacks only work once armed, and only from the ground (rooted swing).
 	if has_weapon and is_on_floor():
 		if Input.is_action_just_pressed("attack_light"):
 			_start_attack(false)
 		elif Input.is_action_just_pressed("attack_heavy"):
 			_start_attack(true)
+
+
+func _start_dash() -> void:
+	is_dashing = true
+	dash_timer = dash_time
+	dash_dir = facing                 # lock direction for the whole burst
+	# Vector: the dash is a horizontal impulse in the facing direction.
+	# Newton's 1st law reads well here — the burst sets a velocity that carries
+	# Husk until the dash ends and friction/gravity take back over.
+	velocity.x = dash_dir * dash_speed
+	if dash_cancel_gravity:
+		velocity.y = 0.0              # flat horizontal dash, no drop mid-burst
+
+
+func _process_dash(delta: float) -> void:
+	dash_timer -= delta
+	# Hold the burst velocity. Optionally keep it flat (no gravity) for a clean
+	# horizontal dart; otherwise let gravity still pull down during the dash.
+	velocity.x = dash_dir * dash_speed
+	if dash_cancel_gravity:
+		velocity.y = 0.0
+	else:
+		if not is_on_floor():
+			velocity.y += gravity * delta
+
+	if dash_timer <= 0.0:
+		is_dashing = false
+		dash_cooldown_timer = dash_cooldown
+		# Bleed the burst down toward normal run speed so it doesn't end abruptly.
+		velocity.x = clampf(velocity.x, -move_speed, move_speed)
 
 
 func _start_attack(heavy: bool) -> void:
@@ -221,6 +279,11 @@ func _resolve_body_collisions() -> void:
 		var c := get_slide_collision(i)
 		var other := c.get_collider()
 		if other is CharacterBody2D and other.has_method("apply_knockback"):
+			# The boss is a heavy, rooted fight — don't bounce the player off it
+			# every frame, or the player can never hold melee range. Still solid
+			# (the collision shape stops movement), just no continuous shove.
+			if other.is_in_group("boss"):
+				continue
 			var normal: Vector2 = c.get_normal()
 			var impulse := 100.0
 			other.apply_knockback(-normal * impulse)          # action
@@ -240,9 +303,10 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 	apply_knockback(knockback)
 	knockback_hold = knockback_hold_time
 	if hurt_sfx: hurt_sfx.play()
-	# Getting hit cancels any swing in progress so the interrupted attack
-	# can't still land damage after the hurt animation.
+	# Getting hit cancels any swing OR dash in progress so the interrupted action
+	# can't keep running through the hurt state.
 	is_attacking = false
+	is_dashing = false
 	hitbox_shape.set_deferred("disabled", true)
 	if health == 0:
 		_die()
@@ -255,6 +319,7 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 func _die() -> void:
 	is_dead = true
 	is_attacking = false
+	is_dashing = false
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_DEATH)
 	died.emit()
@@ -271,6 +336,15 @@ func _update_animation() -> void:
 	sprite.offset.x = 15 * facing   # mirror X offset with facing so the turn stays centered
 	if is_hurt:
 		sprite.play(ANIM_HURT)
+	elif is_dashing:
+		# Use a dedicated dash anim if you have one; otherwise fall back to the
+		# air/run anim so it still reads as motion without a missing-anim error.
+		if use_dash_anim:
+			sprite.play(ANIM_DASH)
+		elif not is_on_floor():
+			sprite.play(ANIM_JUMP)
+		else:
+			sprite.play(ANIM_RUN)
 	elif is_attacking:
 		sprite.play(ANIM_HEAVY if current_damage == heavy_damage else ANIM_LIGHT)
 	elif not is_on_floor():

@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://fbwdul55hp8w"]
+
+[ext_resource type="Script" uid="uid://80lnkigqh083" path="res://pot_projectile.gd" id="1_8bjon"]
+[ext_resource type="Texture2D" uid="uid://bv822oy84qcn7" path="res://Assets/Mountain Depths/Mountain Depths assets/Characters/Pot Creature/atk2 projectile-travelling.png" id="2_wt8tg"]
+[ext_resource type="Texture2D" uid="uid://dwmgpj4v53v2f" path="res://Assets/Mountain Depths/Mountain Depths assets/Characters/Pot Creature/atk2 projectile-splash.png" id="3_pdd7o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwvjg"]
+atlas = ExtResource("2_wt8tg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw82n"]
+atlas = ExtResource("2_wt8tg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6htgy"]
+atlas = ExtResource("2_wt8tg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am046"]
+atlas = ExtResource("2_wt8tg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ov48"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(0, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gyjm"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(160, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phig0"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(320, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58ip3"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(480, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t32s"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(640, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpahd"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(800, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5seei"]
+atlas = ExtResource("3_pdd7o")
+region = Rect2(960, 0, 160, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arrne"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwvjg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw82n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6htgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am046")
+}],
+"loop": 0,
+"name": &"pot_orb",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ov48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gyjm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phig0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58ip3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t32s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpahd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5seei")
+}],
+"loop": 0,
+"name": &"pot_splash",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cvtr"]
+radius = 30.0
+
+[node name="PotProjectile" type="Area2D" unique_id=706433338]
+collision_mask = 5
+script = ExtResource("1_8bjon")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=669968005]
+sprite_frames = SubResource("SpriteFrames_arrne")
+animation = &"pot_splash"
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1005073148]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_1cvtr")
