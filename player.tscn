@@ -533,7 +533,7 @@ animations = [{
 size = Vector2(14.5, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dw050"]
-size = Vector2(14.125, 25.25)
+size = Vector2(45, 25.25)
 
 [node name="Player" type="CharacterBody2D" unique_id=973876248 groups=["player"]]
 collision_mask = 6
@@ -545,8 +545,8 @@ light_active_start = 0.4
 light_active_end = 0.9
 heavy_active_start = 0.6
 heavy_active_end = 1.1
-light_hitbox_x = 28.0
-heavy_hitbox_x = 48.0
+light_hitbox_x = 15.0
+heavy_hitbox_x = 25.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1935695601]
 sprite_frames = SubResource("SpriteFrames_xtoym")

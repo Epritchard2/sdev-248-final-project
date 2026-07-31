@@ -119,8 +119,10 @@ func _physics_process(delta: float) -> void:
 func _process_normal(delta: float) -> void:
 	var input_dir := Input.get_axis("move_left", "move_right")
 
-	if input_dir != 0.0:
-		facing = signi(int(input_dir))
+	if absf(input_dir) > 0.2:
+		# Use the sign of the float directly. The old int() truncated analog
+		# stick values (e.g. -0.8 -> 0), which broke facing on a controller.
+		facing = -1 if input_dir < 0.0 else 1
 		var a := accel if is_on_floor() else air_accel
 		# Newton's 2nd law (F = ma): accel toward target speed, scaled by mass.
 		velocity.x = move_toward(velocity.x, input_dir * move_speed, (a / mass) * delta)
