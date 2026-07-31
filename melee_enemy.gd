@@ -1,10 +1,6 @@
 extends CharacterBody2D
-## Zombie — basic undead MOB (Godot 4.7)
-## Patrols back and forth, chases when the player enters PlayerDetector,
-## winds up and swings when in range. Slow and tanky.
-## Physics tags (search "Newton") match the player's for grading consistency.
 
-# --- Animation names (match the SpriteFrames exactly) ---
+
 const ANIM_IDLE   := "idle"
 const ANIM_WALK   := "walk"
 const ANIM_ATTACK := "attack"
@@ -36,6 +32,8 @@ const ANIM_DEATH  := "death"
 @export var hurt_time: float = 0.3           # how long the hurt animation locks the zombie
 @export var knockback_drag: float = 300.0    # gentle drag during hurt so knockback shows
 @export var knockback_hold_time: float = 0.15  # seconds the knockback rides with no drag
+@export var corpse_linger_time: float = 2.5  # seconds the body stays after death before removal
+@export_flags_2d_physics var floor_mask_bit: int = 4  # which layer the floor is on (bit 3 = value 4)
 
 # --- Nodes ---
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -221,12 +219,14 @@ func _die() -> void:
 	state = State.DEAD
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_DEATH)
-	# Stop detecting/colliding (deferred, so it doesn't fight the physics flush).
-	set_deferred("monitoring", false)
-	collision_layer = 0
-	collision_mask = 0
-	# Remove the body once the death animation finishes.
-	await sprite.animation_finished
+	# Stop attacking/detecting the player, but stay solid against the FLOOR so the
+	# corpse rests on the ground instead of falling through. Keep the body on its
+	# own layer off, but keep the floor in the mask.
+	detector.set_deferred("monitoring", false)
+	collision_layer = 0            # nothing needs to detect the corpse
+	collision_mask = floor_mask_bit  # still collide with the floor so it doesn't fall
+	# Let the death animation play, then linger a moment before removing the body.
+	await get_tree().create_timer(corpse_linger_time).timeout
 	queue_free()
 
 

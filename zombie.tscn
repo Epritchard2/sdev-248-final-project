@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cybk7rki2t6dh"]
 
 [ext_resource type="Texture2D" uid="uid://c1ykordsc313q" path="res://Assets/Cemetery/Cemetery/Characters/undead/Undead-atk animation.png" id="1_7nqyo"]
-[ext_resource type="Script" uid="uid://d4dbxlf356gr2" path="res://zombie.gd" id="1_lnshm"]
+[ext_resource type="Script" uid="uid://d4dbxlf356gr2" path="res://melee_enemy.gd" id="1_lnshm"]
 [ext_resource type="Texture2D" uid="uid://dovklolcusyfb" path="res://Assets/Cemetery/Cemetery/Characters/undead/Undead-death animation.png" id="2_lnshm"]
 [ext_resource type="Texture2D" uid="uid://di46td74fegel" path="res://Assets/Cemetery/Cemetery/Characters/undead/Undead-hurt animation.png" id="3_x5rsa"]
 [ext_resource type="Texture2D" uid="uid://bmrcxotybarhi" path="res://Assets/Cemetery/Cemetery/Characters/undead/Undead-idle animation.png" id="4_ogcpr"]
@@ -429,7 +429,7 @@ size = Vector2(23, 34)
 [sub_resource type="CircleShape2D" id="CircleShape2D_roy8y"]
 radius = 107.46627
 
-[node name="Zombie" type="CharacterBody2D" unique_id=1676214616 groups=["enemies"]]
+[node name="zombie" type="CharacterBody2D" unique_id=1676214616 groups=["enemies"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_lnshm")
