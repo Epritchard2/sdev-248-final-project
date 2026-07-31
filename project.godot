@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="SDEV 248 Final Project"
+run/main_scene="uid://7kjse1710gy8"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://cxywrpy8car36"
+
+[autoload]
+
+SaveManager="*uid://c5uagy7nmlvoj"
 
 [display]
 
@@ -73,3 +82,5 @@ dash={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

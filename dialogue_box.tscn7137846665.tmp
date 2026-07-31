@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bb1seyji3h0mh"]
+
+[ext_resource type="Script" uid="uid://civwovgcqsdgx" path="res://dialogue_box.gd" id="1_senjy"]
+
+[node name="DialogueBox" type="CanvasLayer" unique_id=1420439826]
+script = ExtResource("1_senjy")
+
+[node name="Panel" type="Control" parent="." unique_id=1729013253]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NamePanel1" type="Label" parent="Panel" unique_id=1874486695]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="TextLabel1" type="Label" parent="Panel" unique_id=130578054]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

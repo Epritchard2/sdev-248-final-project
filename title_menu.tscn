@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://7kjse1710gy8"]
+
+[ext_resource type="Script" uid="uid://su0eb5ve4wr" path="res://title_menu.gd" id="1_cgpkj"]
+[ext_resource type="Script" uid="uid://5amy7itddxar" path="res://options_menu.gd" id="2_w37us"]
+
+[node name="TitleMenu" type="Control" unique_id=1785031860]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cgpkj")
+
+[node name="NewGameButton" type="TextureButton" parent="." unique_id=404317673]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContinueButton" type="TextureButton" parent="." unique_id=1605804878]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionsButton" type="TextureButton" parent="." unique_id=869697123]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuitButton" type="TextureButton" parent="." unique_id=1163061496]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionsMenu" type="Control" parent="." unique_id=1398724348]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_w37us")
+
+[node name="MasterSlider" type="HSlider" parent="OptionsMenu" unique_id=1498502650]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.1
+
+[node name="MusicSlider" type="HSlider" parent="OptionsMenu" unique_id=1399568845]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.1
+
+[node name="SFXSlider" type="HSlider" parent="OptionsMenu" unique_id=970150863]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.1
+
+[node name="BackButton" type="TextureButton" parent="OptionsMenu" unique_id=358515846]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

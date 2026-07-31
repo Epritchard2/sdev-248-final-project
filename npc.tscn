@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://vgohfuip3x25"]
+
+[ext_resource type="Script" uid="uid://dkkqwponxnyr6" path="res://npc.gd" id="1_ideak"]
+[ext_resource type="Texture2D" uid="uid://b2ubj02d8tt5h" path="res://Assets/Player Character/Player Character With Variation/enemy1-variation1-idle.png" id="2_xxcha"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh24r"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul7y6"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc6q4"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcvl2"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(576, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d61ma"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(768, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slxoh"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(960, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l64hl"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(1152, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_215dd"]
+atlas = ExtResource("2_xxcha")
+region = Rect2(1344, 0, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtoym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh24r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul7y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc6q4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcvl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d61ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slxoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l64hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_215dd")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxcha"]
+radius = 6.0
+height = 28.0
+
+[node name="npc" type="Area2D" unique_id=1457137372]
+script = ExtResource("1_ideak")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1325940811]
+sprite_frames = SubResource("SpriteFrames_xtoym")
+animation = &"idle"
+frame = 6
+frame_progress = 0.72362936
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1782096753]
+position = Vector2(-15, 7)
+shape = SubResource("CapsuleShape2D_xxcha")

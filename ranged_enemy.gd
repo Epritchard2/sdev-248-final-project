@@ -62,7 +62,8 @@ var retreat_dir: int = 1
 
 
 func _ready() -> void:
-	add_to_group("enemies")
+	if not is_in_group("enemies"):
+		add_to_group("enemies")
 	health = max_health
 	start_x = global_position.x
 	detector.body_entered.connect(_on_detector_body_entered)
@@ -236,6 +237,7 @@ func apply_knockback(impulse: Vector2) -> void:
 
 func _die() -> void:
 	state = State.DEAD
+	remove_from_group("enemies")
 	sprite.play(ANIM_DEATH)
 	detector.set_deferred("monitoring", false)
 	collision_layer = 0

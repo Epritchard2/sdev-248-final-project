@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://biwvmw0jnfr70"]
+
+[ext_resource type="PackedScene" uid="uid://bb1seyji3h0mh" path="res://dialogue_box.tscn" id="1_fpmam"]
+[ext_resource type="Script" uid="uid://6vmxe1guesfs" path="res://level_manager.gd" id="2_yvdlh"]
+[ext_resource type="PackedScene" uid="uid://hkkauhlt680a" path="res://hud.tscn" id="3_bt2in"]
+[ext_resource type="PackedScene" uid="uid://b74sec15y18ts" path="res://door.tscn" id="4_eplfp"]
+[ext_resource type="PackedScene" uid="uid://vgohfuip3x25" path="res://npc.tscn" id="5_eplfp"]
+[ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="6_6vlew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
+size = Vector2(1325, 144)
+
+[node name="npcTestLevel" type="Node2D" unique_id=1666931667]
+
+[node name="DialogueBox" parent="." unique_id=1420439826 instance=ExtResource("1_fpmam")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1900179384]
+collision_layer = 5
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=525146192]
+position = Vector2(693, 369)
+shape = SubResource("RectangleShape2D_xtoym")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D" unique_id=1692483151]
+offset_left = 31.0
+offset_top = 295.0
+offset_right = 1355.0
+offset_bottom = 438.0
+
+[node name="LevelManager" type="Node" parent="." unique_id=298128206]
+script = ExtResource("2_yvdlh")
+door_path = NodePath("../door")
+hud_path = NodePath("../HUD")
+manual_clear = true
+
+[node name="HUD" parent="." unique_id=1883585838 instance=ExtResource("3_bt2in")]
+
+[node name="door" parent="." unique_id=666001600 instance=ExtResource("4_eplfp")]
+position = Vector2(1265, 262)
+
+[node name="npc" parent="." unique_id=1457137372 instance=ExtResource("5_eplfp")]
+position = Vector2(562, 266)
+lines = ["Who are you?", "I can't remember..."]
+dialogue_box_path = NodePath("../DialogueBox")
+door_path = NodePath("../door")
+
+[node name="Player" parent="." unique_id=973876248 instance=ExtResource("6_6vlew")]
+position = Vector2(236, 279)

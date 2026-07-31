@@ -2,12 +2,46 @@
 
 [ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="1_73p4q"]
 [ext_resource type="PackedScene" uid="uid://dleeoh1wgcwfi" path="res://boss.tscn" id="2_esrdm"]
+[ext_resource type="Script" uid="uid://q6ig6n2onp3x" path="res://boss_health_bar.gd" id="3_esrdm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esrdm"]
+bg_color = Color(0.64992017, 0, 0.0857104, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
 size = Vector2(3816.5, 425)
 
 [node name="node2d" type="Node2D" unique_id=571165199]
 scale = Vector2(1.025, 1.025)
+
+[node name="BossHealthBar" type="CanvasLayer" parent="." unique_id=795961565]
+script = ExtResource("3_esrdm")
+
+[node name="Control" type="Control" parent="BossHealthBar" unique_id=1721849901]
+layout_mode = 3
+anchor_left = 0.45000002
+anchor_top = 0.28300002
+anchor_right = 0.45000002
+anchor_bottom = 0.28300002
+offset_left = -203.00006
+offset_top = -134.64001
+offset_right = 196.99994
+offset_bottom = -85.640015
+
+[node name="BossBar" type="ProgressBar" parent="BossHealthBar/Control" unique_id=1641957379]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 4.01
+anchor_right = 0.5
+anchor_bottom = 4.01
+offset_left = -195.0
+offset_top = -24.490005
+offset_right = 196.0
+offset_bottom = 24.509995
+theme_override_styles/fill = SubResource("StyleBoxFlat_esrdm")
+max_value = 15.0
+value = 15.0
+show_percentage = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=879538230]
 collision_layer = 4

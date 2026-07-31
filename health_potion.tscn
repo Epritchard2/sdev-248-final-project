@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dosbrfbtef5c8"]
+
+[ext_resource type="Texture2D" uid="uid://bcg82qphwoyhn" path="res://Assets/Sewers/sewers assets/Props/dripping liquid into the container3.png" id="1_6yo2x"]
+[ext_resource type="Script" uid="uid://ufsc2l5w6g7a" path="res://health_potion.gd" id="1_sctm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sctm6"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjq8p"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egrwh"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt1du"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vifo5"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alnvq"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axkii"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxwup"]
+atlas = ExtResource("1_6yo2x")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtoym"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sctm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjq8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egrwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt1du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vifo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alnvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axkii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxwup")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xtoym"]
+radius = 6.0
+height = 14.0
+
+[node name="HealthPotion" type="Area2D" unique_id=297983478]
+script = ExtResource("1_sctm6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=61509649]
+sprite_frames = SubResource("SpriteFrames_xtoym")
+animation = &"idle"
+frame = 6
+frame_progress = 0.82248366
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1582136675]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_xtoym")

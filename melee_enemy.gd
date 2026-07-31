@@ -1,6 +1,11 @@
 extends CharacterBody2D
+## MeleeEnemy — shared base for melee undead MOBs (Godot 4.7)
+## Patrols back and forth, chases when the player enters PlayerDetector,
+## winds up and swings when in range. Reused by zombie, skeleton, brute, etc.
+## Tune per-enemy via the @export values in the Inspector; art via SpriteFrames.
+## Physics tags are marked with "Newton" comments where the laws apply.
 
-
+# --- Animation names (match the SpriteFrames exactly) ---
 const ANIM_IDLE   := "idle"
 const ANIM_WALK   := "walk"
 const ANIM_ATTACK := "attack"
@@ -11,7 +16,7 @@ const ANIM_DEATH  := "death"
 @export var mass: float = 2.0             # heavier than player: F = ma makes it feel weighty
 @export var max_health: int = 6           # tanky
 @export var patrol_speed: float = 40.0    # slow shuffle
-@export var chase_speed: float = 70.0     # slightly faster when it sees you
+@export var chase_speed: float = 70.0     # faster than patrol once the player is detected
 @export var gravity: float = 1200.0
 @export var friction: float = 1200.0
 
@@ -57,6 +62,8 @@ var attacking: bool = false
 
 
 func _ready() -> void:
+	if not is_in_group("enemies"):
+		add_to_group("enemies")
 	health = max_health
 	start_x = global_position.x
 	hitbox_shape.disabled = true
@@ -217,6 +224,7 @@ func apply_knockback(impulse: Vector2) -> void:
 
 func _die() -> void:
 	state = State.DEAD
+	remove_from_group("enemies")
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_DEATH)
 	# Stop attacking/detecting the player, but stay solid against the FLOOR so the

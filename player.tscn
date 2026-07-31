@@ -578,11 +578,9 @@ heavy_active_end = 1.1
 light_hitbox_x = 15.0
 heavy_hitbox_x = 25.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1935695601]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1935695601 groups=["player"]]
 sprite_frames = SubResource("SpriteFrames_xtoym")
 animation = &"jump"
-frame = 4
-frame_progress = 1.0
 offset = Vector2(15, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2109124591]
@@ -596,9 +594,18 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_dw050")
 
 [node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=1752472307]
+bus = &"SFX"
 
 [node name="LightSFX" type="AudioStreamPlayer" parent="." unique_id=380213051]
+bus = &"SFX"
 
 [node name="HeavySFX" type="AudioStreamPlayer" parent="." unique_id=173973814]
+bus = &"SFX"
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="." unique_id=1504150229]
+bus = &"SFX"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=99933200]
+zoom = Vector2(1.4, 1.4)
+process_callback = 0
+position_smoothing_enabled = true

@@ -112,6 +112,7 @@ func _ready() -> void:
 	detector.body_exited.connect(_on_detector_body_exited)
 	# Announce starting health so a bar can size itself.
 	boss_health_changed.emit(health, max_health)
+	activate()
 
 
 

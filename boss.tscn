@@ -129,6 +129,14 @@ region = Rect2(351, 621, 351, 207)
 atlas = ExtResource("3_h3lj5")
 region = Rect2(702, 621, 351, 207)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4vyx"]
+atlas = ExtResource("2_etj48")
+region = Rect2(0, 0, 351, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03wqa"]
+atlas = ExtResource("2_etj48")
+region = Rect2(351, 0, 351, 207)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_74bgv"]
 atlas = ExtResource("4_1s1j2")
 region = Rect2(0, 0, 351, 207)
@@ -790,6 +798,12 @@ animations = [{
 }, {
 "duration": 1.5,
 "texture": SubResource("AtlasTexture_k1vsh")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_p4vyx")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_03wqa")
 }],
 "loop": 0,
 "name": &"atk1",
@@ -1016,7 +1030,7 @@ animations = [{
 "speed": 12.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 1.5,
 "texture": SubResource("AtlasTexture_skx2t")
 }, {
 "duration": 1.0,
@@ -1279,7 +1293,8 @@ radius = 4846.884
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_0bnu1")
-max_health = 5
+max_health = 15
+revive_health = 8
 chase_speed = 70.0
 cast_cooldown = 10.0
 decision_pause = 3.0
@@ -1293,9 +1308,7 @@ atk3_spread_x = 45.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1239272967]
 sprite_frames = SubResource("SpriteFrames_wt8tg")
-animation = &"resurrect"
-frame = 59
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=256931337]
 position = Vector2(-15, 22)
@@ -1310,6 +1323,5 @@ shape = SubResource("RectangleShape2D_pnmai")
 [node name="PlayerDetector" type="Area2D" parent="." unique_id=1293429981]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=332167680]
-visible = false
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_we8h1")

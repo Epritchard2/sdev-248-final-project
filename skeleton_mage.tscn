@@ -460,18 +460,21 @@ size = Vector2(31, 44.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ws5ay"]
 radius = 688.0443
 
-[node name="SkeletonMage" type="CharacterBody2D" unique_id=834559163]
+[node name="SkeletonMage" type="CharacterBody2D" unique_id=834559163 groups=["enemies"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_61m5n")
 max_health = 2
+retreat_speed = 80.0
+retreat_distance = 80.0
+cast_windup_time = 0.8
+cast_loop_time = 0.7
+cast_cooldown = 3.0
 orb_scene = ExtResource("2_rwkyi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=825127182]
 sprite_frames = SubResource("SpriteFrames_xtoym")
-animation = &"idle"
-frame = 5
-frame_progress = 0.76383865
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=85052099]
 position = Vector2(2.5, 16.75)
@@ -479,7 +482,7 @@ shape = SubResource("RectangleShape2D_uba62")
 
 [node name="PlayerDetector" type="Area2D" parent="." unique_id=1678257135]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=615643771 groups=["enemies"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=615643771]
 visible = false
 shape = SubResource("CircleShape2D_ws5ay")
 

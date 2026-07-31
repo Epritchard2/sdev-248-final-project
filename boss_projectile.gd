@@ -4,7 +4,7 @@ extends Area2D
 ## Hangs in place for a short beat, then falls straight down. Damages on contact,
 ## plays a fizzle animation on impact/timeout before disappearing.
 
-# --- Animation names (match the SpriteFrames exactly) ---
+# --- Animation names 
 const ANIM_HOVER   := "hover"     # spikes hover in the sky before dropping (looping)
 const ANIM_FALLING := "falling"   # descending animation (looping)
 const ANIM_FIZZLE  := "fizzle"    # impact animation (one-shot, Loop OFF)

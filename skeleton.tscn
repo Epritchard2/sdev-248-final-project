@@ -444,11 +444,15 @@ max_health = 3
 patrol_speed = 60.0
 chase_speed = 120.0
 attack_damage = 1
+attack_active_start = 0.8
+attack_active_end = 1.1
 attack_cooldown = 0.8
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1678415042]
 sprite_frames = SubResource("SpriteFrames_rie6r")
-animation = &"idle"
+animation = &"walk"
+frame = 7
+frame_progress = 0.15292357
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=619886860]
 position = Vector2(2, 11.5)

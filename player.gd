@@ -82,6 +82,7 @@ var recoil_done: bool = false
 var current_damage: int = 0
 var current_knockback: float = 0.0
 var already_hit: Array = []              # so one swing hits each enemy only once
+var dialogue_active: bool = false        # true while a dialogue box is open; freezes input
 
 signal health_changed(current: int, maximum: int)   # HUD listens to this
 signal died
@@ -140,6 +141,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _process_normal(delta: float) -> void:
+	# Frozen while a dialogue box is open: bleed to a stop and ignore all input
+	# (movement, jump, dash, attacks) until the box closes. Gravity still applies
+	# from _physics_process, so the player rests on the ground rather than floating.
+	if dialogue_active:
+		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		return
+
 	var input_dir := Input.get_axis("move_left", "move_right")
 
 	if absf(input_dir) > 0.2:
@@ -275,6 +283,10 @@ func _on_hitbox_body_entered(body: Node) -> void:
 func _resolve_body_collisions() -> void:
 	# Newton's 3rd law (action/reaction): bumping an enemy body pushes both
 	# apart with equal and opposite impulses, scaled by mass.
+	# Skipped during a dash — the dash is a movement burst, not a shove, so it
+	# shouldn't knock enemies around.
+	if is_dashing:
+		return
 	for i in get_slide_collision_count():
 		var c := get_slide_collision(i)
 		var other := c.get_collider()
@@ -314,6 +326,19 @@ func take_hit(damage: int, knockback: Vector2) -> void:
 		is_hurt = true
 		hurt_timer = hurt_time
 		sprite.play(ANIM_HURT)
+
+
+func heal(amount: int) -> bool:
+	# Restore health up to max. Returns true only if health actually went up, so
+	# a pickup can stay in the world when the player is already full. A dead
+	# player can't be healed.
+	if is_dead or amount <= 0:
+		return false
+	if health >= max_health:
+		return false
+	health = mini(max_health, health + amount)
+	health_changed.emit(health, max_health)
+	return true
 
 
 func _die() -> void:
