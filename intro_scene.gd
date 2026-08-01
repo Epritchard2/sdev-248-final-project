@@ -84,12 +84,8 @@ func _finish() -> void:
 	# Unfreeze (harmless since we're leaving), fade back to black, then load the
 	# first level so the transition isn't an abrupt cut.
 	_freeze_player(false)
-	if fade_rect != null:
-		var fade := create_tween()
-		fade.tween_property(fade_rect, "color:a", 1.0, fade_time)
-		await fade.finished
 	if next_scene != "":
-		get_tree().change_scene_to_file(next_scene)
+		SceneTransition.change_scene(next_scene)
 
 
 func _freeze_player(frozen: bool) -> void:

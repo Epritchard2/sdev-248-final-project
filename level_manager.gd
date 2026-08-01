@@ -30,6 +30,7 @@ var total_enemies: int = 0
 var door: Node = null
 var hud: Node = null
 var level_cleared: bool = false
+
 func _ready() -> void:
 	# Wait a frame so all enemies and the player have registered their groups.
 	await get_tree().process_frame
@@ -64,6 +65,7 @@ func _ready() -> void:
 	# manual-clear room, where the door is opened by something else (an NPC).
 	if total_enemies == 0 and not manual_clear:
 		_clear_level()
+
 func _process(_delta: float) -> void:
 	if level_cleared:
 		return
@@ -72,13 +74,16 @@ func _process(_delta: float) -> void:
 	_update_hud_from_remaining(remaining)
 	if remaining == 0 and total_enemies > 0 and not manual_clear:
 		_clear_level()
+
 func _update_hud() -> void:
 	var remaining := get_tree().get_nodes_in_group(enemy_group).size()
 	_update_hud_from_remaining(remaining)
+
 func _update_hud_from_remaining(remaining: int) -> void:
 	if hud != null and hud.has_method("set_kills"):
 		var killed := total_enemies - remaining
 		hud.set_kills(killed, total_enemies)
+
 func _clear_level() -> void:
 	if level_cleared:
 		return
@@ -100,8 +105,9 @@ func _clear_level() -> void:
 		await get_tree().create_timer(unlock_delay).timeout
 	if door != null and door.has_method("unlock"):
 		door.unlock()
+
 func _on_player_died() -> void:
 	# Load the lose cutscene/scene. Short delay lets the death animation start.
 	await get_tree().create_timer(0.6).timeout
 	if lose_scene != "":
-		get_tree().change_scene_to_file(lose_scene)
+		SceneTransition.change_scene(lose_scene)

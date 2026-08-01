@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://csvbabuoh3wj2"
+path="res://.godot/imported/lightattack.wav-794b76ffe646cc4a01787a79a8c9d99a.sample"
+
+[deps]
+
+source_file="res://Sound Effects/lightattack.wav"
+dest_files=["res://.godot/imported/lightattack.wav-794b76ffe646cc4a01787a79a8c9d99a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

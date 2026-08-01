@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://744aa4eqwefi" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Normal.png" id="4_8gtgy"]
 [ext_resource type="Texture2D" uid="uid://dtjwco7my1xvh" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Pressed.png" id="5_pmgax"]
 [ext_resource type="Texture2D" uid="uid://vsjrkntf6cr2" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Selected.png" id="6_14evm"]
+[ext_resource type="AudioStream" uid="uid://blumcbdjrxwtg" path="res://Music/game_over-spacey.wav" id="7_8gtgy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2dhsj"]
 font = ExtResource("3_14evm")
@@ -35,6 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cbtnu")
+title_scene = "uid://7kjse1710gy8"
 
 [node name="Background" type="TextureRect" parent="." unique_id=1474302400]
 texture_filter = 1
@@ -115,3 +117,6 @@ offset_right = 266.0
 offset_bottom = 92.0
 text = "Exit"
 label_settings = SubResource("LabelSettings_cga4h")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1991448060]
+stream = ExtResource("7_8gtgy")

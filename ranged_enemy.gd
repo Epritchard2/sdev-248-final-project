@@ -59,9 +59,14 @@ var cast_stage: int = 0        # 0 windup, 1 loop, 2 release
 var orb_fired: bool = false
 var retreat_start_x: float = 0.0
 var retreat_dir: int = 1
+var cast_sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
+	cast_sfx = AudioStreamPlayer.new()
+	cast_sfx.bus = "SFX"
+	cast_sfx.stream = load("res://Sound Effects/lightattack.wav")
+	add_child(cast_sfx)
 	if not is_in_group("enemies"):
 		add_to_group("enemies")
 	health = max_health
@@ -165,6 +170,7 @@ func _fire_orb() -> void:
 		return
 	var orb := orb_scene.instantiate()
 	get_parent().add_child(orb)
+	if cast_sfx: cast_sfx.play()
 	# Mirror the muzzle's local X offset by facing so the orb spawns from the
 	# side the mage is facing, not always the right.
 	var muzzle_offset := muzzle.position

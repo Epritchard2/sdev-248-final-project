@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbikk12hlqr7k" path="res://intro_scene.gd" id="1_2glrg"]
 [ext_resource type="Texture2D" uid="uid://b7ke26723nljy" path="res://Backgrounds/1.png" id="2_b1u3c"]
+[ext_resource type="AudioStream" uid="uid://x3h157b2p4nd" path="res://Music/Sombersync.wav" id="2_h7lmj"]
 [ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="2_o8unc"]
 [ext_resource type="PackedScene" uid="uid://bb1seyji3h0mh" path="res://dialogue_box.tscn" id="3_b1u3c"]
 [ext_resource type="TileSet" uid="uid://ccyii2wtjqlse" path="res://leveltilesets.tres" id="3_h7lmj"]
@@ -16,18 +17,23 @@ camera_path = NodePath("Camera2D")
 pan_time = 5.0
 dialogue_box_path = NodePath("DialogueBox")
 speaker_name = ""
-lines = ["You awake", "You can't remember where you are..", "Or maybe even who you are?", "Husk?", "Either way, you need to try remember..", "The only memory you hold right now is a name..", "THE  BRUTE", "Keyboard / Mouse Controls:
-Left Click - Light Attack - 1 Damage
-Right Click - Heavy Attack With Knockback - 3 Damage
-Spacebar - Jump
-Left Shift - Dash
-A - Move Left
-D - Move Right", "Controller:
-L1 - Heavy Attack
-R1 - Light Attack
-A or X - Jump
-Y or 🛆 - Dash
-Left Stick - Move Left or Right"]
+lines = ["You Awake.", "The only memory you have is of endless sleep...", "You can't remember where you are", "Or maybe even who you are?", "Husk?", "All you know is that you need to find the one who stole your memories..", "The only thing you can remember right now is a name...", "THE   BRUTE", "Keyboard  /  Mouse   Controls:
+Left Click  -  Light Attack
+Right  Click  -  Heavy Attack
+Spacebar  -  Jump
+Left  Shift  -  Dash
+A  -  Move  Left
+D  -  Move  Right", "Controller:
+L1  -  Heavy Attack
+R1  -  Light Attack
+Y  -  Dash
+A  -  Jump
+Left  Stick  -  Move  Left  and  Move  Right"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=719880203]
+stream = ExtResource("2_h7lmj")
+autoplay = true
+bus = &"Music"
 
 [node name="DecorSprite" type="Sprite2D" parent="." unique_id=1105722948]
 position = Vector2(-75, -225.00003)

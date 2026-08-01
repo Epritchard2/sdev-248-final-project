@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://vsp3lfrs1er6" path="res://UI Assets/BGbox_08A.png" id="2_26557"]
 [ext_resource type="FontFile" uid="uid://bq5rnxiurhpk5" path="res://UI Assets/Enchanted Land.otf" id="3_luvg0"]
 [ext_resource type="Texture2D" uid="uid://744aa4eqwefi" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Normal.png" id="4_5hoe6"]
+[ext_resource type="AudioStream" uid="uid://bl8qmyy27u3hs" path="res://Music/Slowfeels.wav" id="4_g6jvr"]
 [ext_resource type="Texture2D" uid="uid://dtjwco7my1xvh" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Pressed.png" id="5_g6jvr"]
 [ext_resource type="Texture2D" uid="uid://vsjrkntf6cr2" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Selected.png" id="6_luvg0"]
 
@@ -49,6 +50,8 @@ label_settings = SubResource("LabelSettings_cga4h")
 horizontal_alignment = 1
 
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="." unique_id=843522587]
+stream = ExtResource("4_g6jvr")
+autoplay = true
 
 [node name="MainMenuButton" type="TextureButton" parent="." unique_id=1509620898]
 layout_mode = 0

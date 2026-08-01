@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b12qnbi3ahk5x" path="res://UI Assets/DecoratedFrame2_Left.png" id="6_r6edv"]
 [ext_resource type="Script" uid="uid://bdw6m0n386ioi" path="res://camera_zone.gd" id="7_r6edv"]
 [ext_resource type="PackedScene" uid="uid://dosbrfbtef5c8" path="res://health_potion.tscn" id="8_tgtbp"]
+[ext_resource type="AudioStream" uid="uid://hyfghr5ies63" path="res://Music/Spooky_Boss.wav" id="12_7o5gh"]
 
 [node name="BossLevel" type="Node2D" unique_id=281940349]
 
@@ -43,9 +44,9 @@ position = Vector2(176, 327)
 [node name="Boss" parent="." unique_id=1017396505 instance=ExtResource("3_1r4ju")]
 position = Vector2(526, 299)
 dialogue_box_path = NodePath("../DialogueBox")
-prefight_lines = ["What are you doing here thrall?", "Wait..", "How are you free?", "It matters not. I WILL END YOU HERE."]
+prefight_lines = ["What are you doing here thrall?", "Wait..", "How are you free?", "It matters not.  I  WILL  END  YOU  HERE."]
 resurrect_lines = ["Hahaha..", "You thought it was over?", "Fool."]
-predeath_lines = ["I WILL BE BACK. ", "IT IS MY MASTERS WILL."]
+predeath_lines = ["I   WILL   BE   BACK. ", "IT   IS   MY   MASTERS   WILL."]
 
 [node name="BossHealthBar" type="CanvasLayer" parent="." unique_id=712562618]
 script = ExtResource("2_1r4ju")
@@ -101,3 +102,8 @@ position = Vector2(879, 328)
 
 [node name="HealthPotion3" parent="." unique_id=174846323 instance=ExtResource("8_tgtbp")]
 position = Vector2(919, 327)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1797744374]
+stream = ExtResource("12_7o5gh")
+autoplay = true
+bus = &"Music"

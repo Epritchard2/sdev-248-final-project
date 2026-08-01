@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cstrg2xbqnqf8"
+path="res://.godot/imported/take_damage-01.wav-f0e3a241b5f15991daa44d262b2b4197.sample"
+
+[deps]
+
+source_file="res://Sound Effects/take_damage-01.wav"
+dest_files=["res://.godot/imported/take_damage-01.wav-f0e3a241b5f15991daa44d262b2b4197.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

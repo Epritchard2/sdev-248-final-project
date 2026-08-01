@@ -23,16 +23,19 @@ signal used
 @onready var sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D")
 var is_unlocked: bool = false
 var block: Node = null
+
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	block = get_node_or_null(block_path)
 	lock()
+
 func lock() -> void:
 	is_unlocked = false
 	if use_animations and sprite != null:
 		sprite.play(locked_anim)
 	# Re-enable the physical block (a CollisionShape2D) so the player can't leave.
 	_set_block_disabled(false)
+
 func unlock() -> void:
 	if is_unlocked:
 		return
@@ -42,6 +45,7 @@ func unlock() -> void:
 	# Drop the physical block so the player can pass through.
 	_set_block_disabled(true)
 	unlocked.emit()
+
 func _set_block_disabled(disabled: bool) -> void:
 	# The block is expected to be a CollisionShape2D (child of a StaticBody2D that
 	# walls off the exit). Toggling its disabled flag opens/closes the way.
@@ -49,6 +53,7 @@ func _set_block_disabled(disabled: bool) -> void:
 		return
 	if block is CollisionShape2D:
 		block.set_deferred("disabled", disabled)
+
 func _on_body_entered(body: Node) -> void:
 	# Only the player triggers the exit, and only once unlocked.
 	if not is_unlocked:
@@ -63,4 +68,4 @@ func _on_body_entered(body: Node) -> void:
 		if sm != null and sm.has_method("save_progress"):
 			sm.save_progress(next_scene)
 	if next_scene != "":
-		get_tree().change_scene_to_file(next_scene)
+		SceneTransition.change_scene(next_scene)

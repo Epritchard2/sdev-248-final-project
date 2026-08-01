@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://c8osy4ufnfa4r" path="res://Assets/Player Character/Player Character With Variation/enemy1-hurt.png" id="5_n7ghd"]
 [ext_resource type="Texture2D" uid="uid://dbhd13olndr0p" path="res://Assets/Player Character/Player Character With Variation/enemy1-idle.png" id="6_nvl01"]
 [ext_resource type="Texture2D" uid="uid://br4qxqegmubui" path="res://Assets/Player Character/Player Character With Variation/enemy1-run.png" id="7_ivps1"]
+[ext_resource type="AudioStream" uid="uid://pron0jwhoy4g" path="res://Sound Effects/jump.wav" id="8_nvl01"]
+[ext_resource type="AudioStream" uid="uid://cbdlpsgc5ws2u" path="res://Sound Effects/knifeSlice.ogg" id="9_nvl01"]
+[ext_resource type="AudioStream" uid="uid://durt6f56vdkkb" path="res://Sound Effects/heavyattack.wav" id="10_urp6f"]
+[ext_resource type="AudioStream" uid="uid://cstrg2xbqnqf8" path="res://Sound Effects/take_damage-01.wav" id="11_bwjto"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
 atlas = ExtResource("2_1jxqw")
@@ -595,15 +599,20 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_dw050")
 
 [node name="JumpSFX" type="AudioStreamPlayer" parent="." unique_id=1752472307]
+stream = ExtResource("8_nvl01")
 bus = &"SFX"
 
 [node name="LightSFX" type="AudioStreamPlayer" parent="." unique_id=380213051]
+stream = ExtResource("9_nvl01")
+volume_db = -10.0
 bus = &"SFX"
 
 [node name="HeavySFX" type="AudioStreamPlayer" parent="." unique_id=173973814]
+stream = ExtResource("10_urp6f")
 bus = &"SFX"
 
 [node name="HurtSFX" type="AudioStreamPlayer" parent="." unique_id=1504150229]
+stream = ExtResource("11_bwjto")
 bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=99933200]

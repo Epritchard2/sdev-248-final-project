@@ -47,6 +47,7 @@ func _ready() -> void:
 
 	if back_button != null and not back_button.pressed.is_connected(_on_back_pressed):
 		back_button.pressed.connect(_on_back_pressed)
+	ButtonSFX.attach(back_button)
 
 
 func _on_master_changed(value: float) -> void:

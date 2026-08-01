@@ -22,6 +22,8 @@ buses/default_bus_layout="uid://cxywrpy8car36"
 [autoload]
 
 SaveManager="*uid://c5uagy7nmlvoj"
+SceneTransition="*uid://dxym4qnv8c1v5"
+ButtonSFX="*uid://cclfdxyb7dmb4"
 
 [display]
 

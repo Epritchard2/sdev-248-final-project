@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bcg82qphwoyhn" path="res://Assets/Sewers/sewers assets/Props/dripping liquid into the container3.png" id="1_6yo2x"]
 [ext_resource type="Script" uid="uid://ufsc2l5w6g7a" path="res://health_potion.gd" id="1_sctm6"]
+[ext_resource type="AudioStream" uid="uid://10fx5fbmtdro" path="res://Sound Effects/item_collect-small-01.wav" id="3_xjq8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sctm6"]
 atlas = ExtResource("1_6yo2x")
@@ -73,6 +74,7 @@ height = 14.0
 
 [node name="HealthPotion" type="Area2D" unique_id=297983478]
 script = ExtResource("1_sctm6")
+heal_sfx_path = NodePath("AudioStreamPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=61509649]
 sprite_frames = SubResource("SpriteFrames_xtoym")
@@ -83,3 +85,6 @@ frame_progress = 0.82248366
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1582136675]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_xtoym")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1704409411]
+stream = ExtResource("3_xjq8p")

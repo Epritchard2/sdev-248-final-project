@@ -60,7 +60,7 @@ func load_game() -> void:
 	# Resume the stored level. No-op if there's no save.
 	if not has_save():
 		return
-	get_tree().change_scene_to_file(current_level)
+	SceneTransition.change_scene(current_level)
 
 
 func set_playing_level(path: String) -> void:
@@ -72,7 +72,7 @@ func set_playing_level(path: String) -> void:
 func restart_level() -> void:
 	# Reload the level currently being played (the one the player died on).
 	if current_playing_level != "":
-		get_tree().change_scene_to_file(current_playing_level)
+		SceneTransition.change_scene(current_playing_level)
 
 
 func clear_save() -> void:

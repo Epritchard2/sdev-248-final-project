@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cr61w5jve6k2k" path="res://Assets/Crypt/Crypt Assets/Props/animated/saw.png" id="1_iqxol"]
 [ext_resource type="Script" uid="uid://dj5oobfecew17" path="res://saw_trap.gd" id="1_pl2bs"]
+[ext_resource type="AudioStream" uid="uid://bylhd0go8s4gl" path="res://Sound Effects/sawblade (2).wav" id="3_mvwjx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl2bs"]
 atlas = ExtResource("1_iqxol")
@@ -49,8 +50,15 @@ script = ExtResource("1_pl2bs")
 sprite_frames = SubResource("SpriteFrames_xtoym")
 animation = &"spin"
 autoplay = "spin"
-frame_progress = 0.6996535
+frame_progress = 0.07447121
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1393899842]
 position = Vector2(1, -3)
 shape = SubResource("CircleShape2D_01kuw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1586786422]
+stream = ExtResource("3_mvwjx")
+volume_db = -10.0
+autoplay = true
+max_distance = 569.0
+bus = &"SFX"

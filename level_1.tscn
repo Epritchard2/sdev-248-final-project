@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b74sec15y18ts" path="res://door.tscn" id="13_sof0w"]
 [ext_resource type="PackedScene" uid="uid://cybk7rki2t6dh" path="res://zombie.tscn" id="13_ubhxj"]
 [ext_resource type="PackedScene" uid="uid://dosbrfbtef5c8" path="res://health_potion.tscn" id="14_ubhxj"]
+[ext_resource type="AudioStream" uid="uid://b4ko5tbvrg40r" path="res://Music/levelmusic.wav" id="16_65or1"]
 [ext_resource type="Texture2D" uid="uid://sd5xpuxlf4vf" path="res://Assets/Crypt/Crypt Assets/Tilesets/Tileset-Terrain.png" id="82_ix33m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7kpp"]
@@ -33079,6 +33080,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="door" parent="." unique_id=666001600 instance=ExtResource("13_sof0w")]
 position = Vector2(2758, 279)
+collision_mask = 1
 next_scene = "uid://dqx7kwg45vnji"
 save_on_use = true
 
@@ -33153,6 +33155,11 @@ position = Vector2(1825, 299)
 
 [node name="HealthPotion" parent="." unique_id=297983478 instance=ExtResource("14_ubhxj")]
 position = Vector2(2088, 245)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2036534972]
+stream = ExtResource("16_65or1")
+autoplay = true
+bus = &"Music"
 
 [editable path="door"]
 [editable path="HUD"]

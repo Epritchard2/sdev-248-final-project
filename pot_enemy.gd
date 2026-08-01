@@ -66,9 +66,14 @@ var knockback_hold: float = 0.0
 var attack_elapsed: float = 0.0
 var hit_landed: bool = false
 var shot_fired: bool = false
+var attack_sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
+	attack_sfx = AudioStreamPlayer.new()
+	attack_sfx.bus = "SFX"
+	attack_sfx.stream = load("res://Sound Effects/heavyattack.wav")
+	add_child(attack_sfx)
 	add_to_group("enemies")
 	health = max_health
 	hitbox_shape.disabled = true
@@ -152,6 +157,7 @@ func _start_melee() -> void:
 	hitbox.position.x = hitbox_reach * facing
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_ATTACK)
+	if attack_sfx: attack_sfx.play()
 
 
 func _process_melee(delta: float) -> void:
@@ -205,6 +211,7 @@ func _lob_projectile() -> void:
 		return
 	var shot := projectile_scene.instantiate()
 	get_parent().add_child(shot)
+	if attack_sfx: attack_sfx.play()
 	# Mirror the muzzle X by facing so the throw comes from the correct side.
 	var muzzle_offset := muzzle.position
 	muzzle_offset.x = absf(muzzle_offset.x) * facing

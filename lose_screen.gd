@@ -25,11 +25,12 @@ func _ready() -> void:
 		restart_button.pressed.connect(_on_restart_pressed)
 	if exit_button != null and not exit_button.pressed.is_connected(_on_exit_pressed):
 		exit_button.pressed.connect(_on_exit_pressed)
+	ButtonSFX.attach_all([main_menu_button, restart_button, exit_button])
 
 
 func _on_main_menu_pressed() -> void:
 	if title_scene != "":
-		get_tree().change_scene_to_file(title_scene)
+		SceneTransition.change_scene(title_scene)
 
 
 func _on_restart_pressed() -> void:

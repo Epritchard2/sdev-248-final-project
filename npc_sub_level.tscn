@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://vgohfuip3x25" path="res://npc.tscn" id="9_hf7w4"]
 [ext_resource type="Texture2D" uid="uid://d31acwg5802uq" path="res://Assets/Cemetery/Cemetery/Props/animated/FOG-1.png" id="11_7lq28"]
 [ext_resource type="Texture2D" uid="uid://bkqac1wmclt4m" path="res://Assets/Cemetery/Cemetery/Props/animated/light insects-fx.png" id="12_tsuki"]
+[ext_resource type="AudioStream" uid="uid://x3h157b2p4nd" path="res://Music/Sombersync.wav" id="14_tsuki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rhaq1"]
 texture = ExtResource("1_11tjy")
@@ -4940,6 +4941,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="door" parent="." unique_id=666001600 instance=ExtResource("8_tob1b")]
 position = Vector2(1538, 165)
+collision_mask = 1
 next_scene = "uid://752q8vhrifeb"
 save_on_use = true
 
@@ -5127,3 +5129,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=730241668]
 position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_xtoym")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2096426616]
+stream = ExtResource("14_tsuki")
+autoplay = true
+bus = &"Music"

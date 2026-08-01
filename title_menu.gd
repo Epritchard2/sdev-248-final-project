@@ -31,6 +31,7 @@ func _ready() -> void:
 	options_button = get_node_or_null(options_button_path)
 	quit_button = get_node_or_null(quit_button_path)
 	options_panel = get_node_or_null(options_panel_path)
+	
 
 	# Options panel (if used) starts hidden.
 	if options_panel != null:
@@ -45,7 +46,8 @@ func _ready() -> void:
 		options_button.pressed.connect(_on_options_pressed)
 	if quit_button != null and not quit_button.pressed.is_connected(_on_quit_pressed):
 		quit_button.pressed.connect(_on_quit_pressed)
-
+		
+	ButtonSFX.attach_all([new_game_button, continue_button, options_button, quit_button])
 	_refresh_continue_button()
 
 
@@ -65,7 +67,7 @@ func _on_new_game_pressed() -> void:
 	if sm != null:
 		sm.clear_save()
 	if first_scene != "":
-		get_tree().change_scene_to_file(first_scene)
+		SceneTransition.change_scene(first_scene)
 
 
 func _on_continue_pressed() -> void:

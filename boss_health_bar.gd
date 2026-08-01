@@ -68,4 +68,4 @@ func _run_end_sequence() -> void:
 	# timer with the pre-death dialogue, then the same scene change.
 	await get_tree().create_timer(end_delay).timeout
 	if win_scene != "":
-		get_tree().change_scene_to_file(win_scene)
+		SceneTransition.change_scene(win_scene)

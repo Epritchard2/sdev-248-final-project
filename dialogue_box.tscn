@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://civwovgcqsdgx" path="res://dialogue_box.gd" id="1_senjy"]
 [ext_resource type="FontFile" uid="uid://bq5rnxiurhpk5" path="res://UI Assets/Enchanted Land.otf" id="2_n23yb"]
+[ext_resource type="AudioStream" uid="uid://h3j6nk8d2e5n" path="res://Sound Effects/dialogue_beep-01-single_beep.wav" id="3_0nste"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0nste"]
 font = ExtResource("2_n23yb")
@@ -16,6 +17,7 @@ font_color = Color(0.85490197, 0, 0.13725491, 1)
 [node name="DialogueBox" type="CanvasLayer" unique_id=1420439826]
 script = ExtResource("1_senjy")
 chars_per_second = 18.0
+type_sfx_path = NodePath("AudioStreamPlayer")
 
 [node name="Panel" type="Control" parent="." unique_id=1729013253]
 layout_mode = 3
@@ -38,3 +40,6 @@ offset_top = 378.0
 offset_right = 1079.0
 offset_bottom = 597.0
 label_settings = SubResource("LabelSettings_senjy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=706065626]
+stream = ExtResource("3_0nste")

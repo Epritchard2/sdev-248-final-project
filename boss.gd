@@ -113,9 +113,19 @@ var atk3_elapsed: float = 0.0
 var shot_timer: float = 0.0
 var shots_fired: int = 0       # counts meteors dropped this volley
 var jump_back_dir: int = -1
+var melee_sfx: AudioStreamPlayer
+var cast_sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
+	melee_sfx = AudioStreamPlayer.new()
+	melee_sfx.bus = "SFX"
+	melee_sfx.stream = load("res://Sound Effects/heavyattack.wav")
+	add_child(melee_sfx)
+	cast_sfx = AudioStreamPlayer.new()
+	cast_sfx.bus = "SFX"
+	cast_sfx.stream = load("res://Sound Effects/lightattack.wav")
+	add_child(cast_sfx)
 	add_to_group("enemies")
 	add_to_group("boss")
 	health = max_health
@@ -222,6 +232,7 @@ func _start_melee() -> void:
 	hitbox.position.x = melee_hitbox_reach * facing
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_ATK1)
+	if melee_sfx: melee_sfx.play()
 
 
 func _process_melee(delta: float) -> void:
@@ -316,6 +327,7 @@ func _fire_arc_shot() -> void:
 		return
 	var shot := projectile_scene.instantiate()
 	get_parent().add_child(shot)
+	if cast_sfx: cast_sfx.play()
 	# Meteor drop: spawn high above the player's current position, with a small
 	# random horizontal offset so repeated shots don't stack in one exact column.
 	var drop_x := target.global_position.x + randf_range(-atk3_spread_x, atk3_spread_x)

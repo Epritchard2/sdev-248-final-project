@@ -59,9 +59,14 @@ var knockback_hold: float = 0.0
 var hurt_timer: float = 0.0
 var hit_landed: bool = false
 var attacking: bool = false
+var attack_sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
+	attack_sfx = AudioStreamPlayer.new()
+	attack_sfx.bus = "SFX"
+	attack_sfx.stream = load("res://Sound Effects/heavyattack.wav")
+	add_child(attack_sfx)
 	if not is_in_group("enemies"):
 		add_to_group("enemies")
 	health = max_health
@@ -140,6 +145,7 @@ func _start_attack() -> void:
 	hitbox.position.x = hitbox_reach * facing
 	hitbox_shape.set_deferred("disabled", true)
 	sprite.play(ANIM_ATTACK)
+	if attack_sfx: attack_sfx.play()
 
 
 func _process_attack(delta: float) -> void:

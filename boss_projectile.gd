@@ -26,9 +26,14 @@ var life_timer: float = 0.0
 var hang_timer: float = 0.0
 var hanging: bool = true         # true while hovering before the drop
 var fizzling: bool = false       # once true, the projectile is dying
+var fall_sfx: AudioStreamPlayer
 
 
 func _ready() -> void:
+	fall_sfx = AudioStreamPlayer.new()
+	fall_sfx.bus = "SFX"
+	fall_sfx.stream = load("res://Sound Effects/explosionCrunch_001.ogg")
+	add_child(fall_sfx)
 	body_entered.connect(_on_body_entered)
 	hang_timer = hang_time
 	# Start in the hover animation while it hangs; switches to falling on drop.
@@ -56,6 +61,7 @@ func _physics_process(delta: float) -> void:
 		if hang_timer <= 0.0:
 			hanging = false
 			sprite.play(ANIM_FALLING)   # switch from hover to the falling animation
+			if fall_sfx: fall_sfx.play()
 		return
 
 	# Newton's 2nd law (F = ma): gravity accelerates it straight down.
