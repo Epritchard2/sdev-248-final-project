@@ -120,3 +120,4 @@ label_settings = SubResource("LabelSettings_cga4h")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1991448060]
 stream = ExtResource("7_8gtgy")
+autoplay = true
