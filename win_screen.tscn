@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://biip6f8vuo0cf"]
+
+[ext_resource type="Script" uid="uid://04ntib0brx7a" path="res://win_screen.gd" id="1_l2arl"]
+[ext_resource type="Texture2D" uid="uid://vsp3lfrs1er6" path="res://UI Assets/BGbox_08A.png" id="2_26557"]
+[ext_resource type="FontFile" uid="uid://bq5rnxiurhpk5" path="res://UI Assets/Enchanted Land.otf" id="3_luvg0"]
+[ext_resource type="Texture2D" uid="uid://744aa4eqwefi" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Normal.png" id="4_5hoe6"]
+[ext_resource type="Texture2D" uid="uid://dtjwco7my1xvh" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Pressed.png" id="5_g6jvr"]
+[ext_resource type="Texture2D" uid="uid://vsjrkntf6cr2" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Selected.png" id="6_luvg0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cga4h"]
+font = ExtResource("3_luvg0")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xtoym"]
+font = ExtResource("3_luvg0")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j35ka"]
+font = ExtResource("3_luvg0")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[node name="WinScreen" type="Control" unique_id=120662893]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1921.0
+offset_bottom = 1091.0
+script = ExtResource("1_l2arl")
+title_scene = "uid://7kjse1710gy8"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2081009322]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1914.0
+offset_bottom = 1080.0
+texture = ExtResource("2_26557")
+
+[node name="ThanksLabel" type="Label" parent="." unique_id=1285124914]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 284.0
+offset_right = 1165.0
+offset_bottom = 461.0
+text = "You've defeated The Brute!
+Thanks for playing"
+label_settings = SubResource("LabelSettings_cga4h")
+horizontal_alignment = 1
+
+[node name="CreditsMusic" type="AudioStreamPlayer" parent="." unique_id=843522587]
+
+[node name="MainMenuButton" type="TextureButton" parent="." unique_id=1509620898]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 509.0
+offset_right = 1089.0
+offset_bottom = 615.0
+texture_normal = ExtResource("4_5hoe6")
+texture_pressed = ExtResource("5_g6jvr")
+texture_hover = ExtResource("6_luvg0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="MainMenuButton" unique_id=811948947]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 25.0
+offset_right = 218.0
+offset_bottom = 78.0
+text = "Main Menu"
+label_settings = SubResource("LabelSettings_xtoym")
+
+[node name="ExitButton" type="TextureButton" parent="." unique_id=519838874]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 624.0
+offset_right = 1091.0
+offset_bottom = 726.0
+texture_normal = ExtResource("4_5hoe6")
+texture_pressed = ExtResource("5_g6jvr")
+texture_hover = ExtResource("6_luvg0")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ExitButton" unique_id=1496979177]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 25.0
+offset_right = 170.0
+offset_bottom = 78.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_j35ka")

@@ -33101,6 +33101,7 @@ position = Vector2(119, 280)
 
 [node name="LevelManager" type="Node" parent="." unique_id=1315249589]
 script = ExtResource("3_j7kpp")
+lose_scene = "uid://psavsyrkocta"
 door_path = NodePath("../door")
 hud_path = NodePath("../HUD")
 

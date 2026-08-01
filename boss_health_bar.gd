@@ -17,7 +17,7 @@ extends CanvasLayer
 # where the pre-death dialogue plays instead of a plain timer. ---
 @export var end_delay: float = 1.5
 
-@onready var bar: ProgressBar = $Control/BossBar
+@onready var bar: TextureProgressBar = $Control/BossBar
 
 var boss: Node = null
 var ending: bool = false     # guards the end sequence so it runs once

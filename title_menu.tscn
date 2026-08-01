@@ -1,63 +1,299 @@
 [gd_scene format=3 uid="uid://7kjse1710gy8"]
 
 [ext_resource type="Script" uid="uid://su0eb5ve4wr" path="res://title_menu.gd" id="1_cgpkj"]
+[ext_resource type="Texture2D" uid="uid://p62llt435bv8" path="res://Backgrounds/origbig.png" id="2_68pyf"]
 [ext_resource type="Script" uid="uid://5amy7itddxar" path="res://options_menu.gd" id="2_w37us"]
+[ext_resource type="FontFile" uid="uid://bq5rnxiurhpk5" path="res://UI Assets/Enchanted Land.otf" id="3_dyu6a"]
+[ext_resource type="Texture2D" uid="uid://744aa4eqwefi" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Normal.png" id="4_qwnsp"]
+[ext_resource type="Texture2D" uid="uid://dtjwco7my1xvh" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Pressed.png" id="5_anvrr"]
+[ext_resource type="Texture2D" uid="uid://vsjrkntf6cr2" path="res://UI Assets/Individual files/2x/Buttons/Button_02A_Selected.png" id="6_vsx38"]
+[ext_resource type="Texture2D" uid="uid://qoinj5lpel0i" path="res://UI Assets/Individual files/2x/Buttons/Button_04A_Normal.png" id="7_8wj17"]
+[ext_resource type="Texture2D" uid="uid://fe75gn2rxdhc" path="res://UI Assets/Individual files/3x/Background boxes/BGbox_04C.png" id="9_dyu6a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xtoym"]
+font = ExtResource("3_dyu6a")
+font_size = 500
+font_color = Color(0, 0.6167387, 0.18518692, 1)
+outline_size = 300
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j35ka"]
+font = ExtResource("3_dyu6a")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cga4h"]
+font = ExtResource("3_dyu6a")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5hoe6"]
+font = ExtResource("3_dyu6a")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6jvr"]
+font = ExtResource("3_dyu6a")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_rbw3w"]
+thickness = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_livm2"]
+bg_color = Color(0.67058825, 0, 0.050980393, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2dhsj"]
+font = ExtResource("3_dyu6a")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_o3b0i"]
+thickness = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67ror"]
+bg_color = Color(0.67058825, 0, 0.050980393, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3g2u4"]
+font = ExtResource("3_dyu6a")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xtoym"]
+thickness = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j35ka"]
+bg_color = Color(0.67058825, 0, 0.050980393, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o3b0i"]
+font = ExtResource("3_dyu6a")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyu6a"]
+font = ExtResource("3_dyu6a")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
 
 [node name="TitleMenu" type="Control" unique_id=1785031860]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 79.0
+offset_top = 119.0
+offset_right = 119.0
+offset_bottom = 159.0
 script = ExtResource("1_cgpkj")
+first_scene = "uid://jbvf8jhendch"
+options_scene = "uid://7kjse1710gy8"
+options_panel_path = NodePath("OptionsMenu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1497015644]
+layout_mode = 0
+offset_left = -374.0
+offset_top = -205.0
+offset_right = 1930.0
+offset_bottom = 1091.0
+texture = ExtResource("2_68pyf")
+
+[node name="TitleName" type="Label" parent="." unique_id=986491788]
+layout_mode = 0
+offset_left = 404.0
+offset_top = -201.0
+offset_right = 1157.0
+offset_bottom = 382.0
+text = "Husk"
+label_settings = SubResource("LabelSettings_xtoym")
 
 [node name="NewGameButton" type="TextureButton" parent="." unique_id=404317673]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 520.0
+offset_top = 434.0
+offset_right = 1065.0
+offset_bottom = 546.0
+texture_normal = ExtResource("4_qwnsp")
+texture_pressed = ExtResource("5_anvrr")
+texture_hover = ExtResource("6_vsx38")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameButton" unique_id=1531061462]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 17.0
+offset_right = 372.0
+offset_bottom = 93.0
+text = "New  Game"
+label_settings = SubResource("LabelSettings_j35ka")
+horizontal_alignment = 1
 
 [node name="ContinueButton" type="TextureButton" parent="." unique_id=1605804878]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 523.0
+offset_top = 561.0
+offset_right = 1065.0
+offset_bottom = 680.0
+texture_normal = ExtResource("4_qwnsp")
+texture_pressed = ExtResource("5_anvrr")
+texture_hover = ExtResource("6_vsx38")
+texture_disabled = ExtResource("7_8wj17")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ContinueButton" unique_id=2022230601]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 25.0
+offset_right = 348.0
+offset_bottom = 101.0
+text = "Continue"
+label_settings = SubResource("LabelSettings_cga4h")
+horizontal_alignment = 1
 
 [node name="OptionsButton" type="TextureButton" parent="." unique_id=869697123]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 523.0
+offset_top = 698.0
+offset_right = 1066.0
+offset_bottom = 816.0
+texture_normal = ExtResource("4_qwnsp")
+texture_pressed = ExtResource("5_anvrr")
+texture_hover = ExtResource("6_vsx38")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="OptionsButton" unique_id=824249220]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 27.0
+offset_right = 339.0
+offset_bottom = 103.0
+text = "Options"
+label_settings = SubResource("LabelSettings_5hoe6")
+horizontal_alignment = 1
 
 [node name="QuitButton" type="TextureButton" parent="." unique_id=1163061496]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 522.0
+offset_top = 846.0
+offset_right = 1064.0
+offset_bottom = 954.0
+texture_normal = ExtResource("4_qwnsp")
+texture_pressed = ExtResource("5_anvrr")
+texture_hover = ExtResource("6_vsx38")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="QuitButton" unique_id=195181564]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 21.0
+offset_right = 309.0
+offset_bottom = 97.0
+text = "Exit"
+label_settings = SubResource("LabelSettings_g6jvr")
+horizontal_alignment = 1
 
 [node name="OptionsMenu" type="Control" parent="." unique_id=1398724348]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchor_left = 2.1000001
+anchor_top = 3.1750002
+anchor_right = 2.1000001
+anchor_bottom = 3.1750002
+offset_left = -10.000008
+offset_top = -21.000008
+offset_right = 1739.0
+offset_bottom = 865.0
 script = ExtResource("2_w37us")
+back_scene = "uid://7kjse1710gy8"
+
+[node name="TextureRect" type="TextureRect" parent="OptionsMenu" unique_id=1652307851]
+texture_filter = 1
+layout_mode = 0
+offset_left = -91.0
+offset_top = -59.0
+offset_right = 1656.0
+offset_bottom = 830.0
+texture = ExtResource("9_dyu6a")
 
 [node name="MasterSlider" type="HSlider" parent="OptionsMenu" unique_id=1498502650]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 16.0
+offset_left = 452.0
+offset_top = 298.0
+offset_right = 701.0
+offset_bottom = 317.0
+theme_override_styles/slider = SubResource("StyleBoxLine_rbw3w")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_livm2")
 max_value = 1.0
 step = 0.1
+
+[node name="Label" type="Label" parent="OptionsMenu/MasterSlider" unique_id=425503967]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -50.0
+offset_right = 219.0
+offset_bottom = 3.0
+text = "Master Volume"
+label_settings = SubResource("LabelSettings_2dhsj")
 
 [node name="MusicSlider" type="HSlider" parent="OptionsMenu" unique_id=1399568845]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 16.0
+offset_left = 455.0
+offset_top = 369.0
+offset_right = 701.0
+offset_bottom = 385.0
+theme_override_styles/slider = SubResource("StyleBoxLine_o3b0i")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_67ror")
 max_value = 1.0
 step = 0.1
+
+[node name="Label" type="Label" parent="OptionsMenu/MusicSlider" unique_id=954207183]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -45.0
+offset_right = 209.0
+offset_bottom = 8.0
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_3g2u4")
 
 [node name="SFXSlider" type="HSlider" parent="OptionsMenu" unique_id=970150863]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 16.0
+offset_left = 458.0
+offset_top = 440.0
+offset_right = 702.0
+offset_bottom = 456.0
+theme_override_styles/slider = SubResource("StyleBoxLine_xtoym")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_j35ka")
 max_value = 1.0
 step = 0.1
 
+[node name="Label" type="Label" parent="OptionsMenu/SFXSlider" unique_id=1268214340]
+layout_mode = 0
+offset_left = 81.0
+offset_top = -43.0
+offset_right = 149.0
+offset_bottom = 10.0
+text = "SFX"
+label_settings = SubResource("LabelSettings_o3b0i")
+horizontal_alignment = 1
+
 [node name="BackButton" type="TextureButton" parent="OptionsMenu" unique_id=358515846]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 837.0
+offset_top = 332.0
+offset_right = 1206.0
+offset_bottom = 454.0
+texture_normal = ExtResource("4_qwnsp")
+texture_pressed = ExtResource("5_anvrr")
+texture_hover = ExtResource("6_vsx38")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="OptionsMenu/BackButton" unique_id=528784756]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 35.0
+offset_right = 316.0
+offset_bottom = 88.0
+text = "Back  To  Main  Menu"
+label_settings = SubResource("LabelSettings_dyu6a")
+horizontal_alignment = 1

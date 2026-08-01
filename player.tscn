@@ -568,6 +568,7 @@ collision_mask = 6
 script = ExtResource("1_4flbx")
 dash_speed = 445.0
 dash_time = 0.3
+max_health = 15
 light_knockback = 250.0
 heavy_knockback = 600.0
 recoil_factor = 0.3

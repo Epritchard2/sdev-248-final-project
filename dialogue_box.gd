@@ -98,7 +98,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(advance_action):
 		_advance()
 		# Consume the press so the same tap can't also make the player jump.
-		get_viewport().set_input_as_handled()
+		# Guard the viewport: during a scene change the box may be tearing down,
+		# so get_viewport() can return null on the last input event.
+		var vp := get_viewport()
+		if vp != null:
+			vp.set_input_as_handled()
 
 
 func _advance() -> void:

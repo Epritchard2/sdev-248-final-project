@@ -4940,6 +4940,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="door" parent="." unique_id=666001600 instance=ExtResource("8_tob1b")]
 position = Vector2(1538, 165)
+next_scene = "uid://752q8vhrifeb"
 save_on_use = true
 
 [node name="Player" parent="." unique_id=973876248 instance=ExtResource("3_j16av")]
@@ -4974,7 +4975,7 @@ scale = Vector2(1, 1.5833334)
 sprite_frames = SubResource("SpriteFrames_xtoym")
 animation = &"fog"
 autoplay = "fog"
-frame_progress = 0.25387684
+frame_progress = 0.3752746
 
 [node name="fog2" type="AnimatedSprite2D" parent="." unique_id=1843146084]
 position = Vector2(521, 196)
@@ -4982,7 +4983,7 @@ scale = Vector2(1, 1.5833334)
 sprite_frames = SubResource("SpriteFrames_xtoym")
 animation = &"fog"
 autoplay = "fog"
-frame_progress = 0.6114954
+frame_progress = 0.7328932
 
 [node name="fog3" type="AnimatedSprite2D" parent="." unique_id=202138922]
 position = Vector2(811, 196)
@@ -5038,7 +5039,7 @@ scale = Vector2(1, 11.208332)
 sprite_frames = SubResource("SpriteFrames_xtoym")
 animation = &"fog"
 autoplay = "fog"
-frame_progress = 0.4116199
+frame_progress = 0.53301823
 
 [node name="fog10" type="AnimatedSprite2D" parent="." unique_id=1281088104]
 position = Vector2(1508, 332)
@@ -5053,7 +5054,7 @@ position = Vector2(105, 316)
 sprite_frames = SubResource("SpriteFrames_j35ka")
 animation = &"fireflies"
 autoplay = "fireflies"
-frame_progress = 0.018195948
+frame_progress = 0.746489
 
 [node name="fireflies2" type="AnimatedSprite2D" parent="." unique_id=983648035]
 position = Vector2(448, 296)

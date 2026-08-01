@@ -1289,12 +1289,12 @@ size = Vector2(67, 54)
 [sub_resource type="CircleShape2D" id="CircleShape2D_we8h1"]
 radius = 4846.884
 
-[node name="Boss" type="CharacterBody2D" unique_id=1017396505 groups=["boss"]]
+[node name="Boss" type="CharacterBody2D" unique_id=1017396505 groups=["boss", "enemies"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_0bnu1")
-max_health = 15
-revive_health = 8
+max_health = 20
+revive_health = 10
 chase_speed = 70.0
 cast_cooldown = 10.0
 decision_pause = 3.0

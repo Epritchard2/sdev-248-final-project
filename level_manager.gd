@@ -33,6 +33,13 @@ var level_cleared: bool = false
 func _ready() -> void:
 	# Wait a frame so all enemies and the player have registered their groups.
 	await get_tree().process_frame
+	# Record the level being played so the lose screen can restart it. Uses the
+	# current scene's own file path, so no per-level Inspector field is needed.
+	var sm := get_node_or_null("/root/SaveManager")
+	if sm != null and sm.has_method("set_playing_level"):
+		var scene := get_tree().current_scene
+		if scene != null and scene.scene_file_path != "":
+			sm.set_playing_level(scene.scene_file_path)
 	door = get_node_or_null(door_path)
 	hud = get_node_or_null(hud_path)
 	# Count the enemies present at the start — that's the total to clear.

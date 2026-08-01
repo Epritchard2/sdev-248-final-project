@@ -21,7 +21,12 @@ const BUS_MUSIC  := "Music"
 const BUS_SFX    := "SFX"
 
 # --- Live save data (kept in memory, mirrored to disk) ---
-var current_level: String = ""   # scene path to resume, e.g. "res://level_2.tscn"
+var current_level: String = ""   # scene path to RESUME at (next level), for Continue
+
+# --- The level actually being played right now (set by each level on load).
+# Used by the lose screen's Restart to reload the exact level the player died on.
+# Not persisted — it's only meaningful during a live session.
+var current_playing_level: String = ""
 
 # --- Settings (0.0 to 1.0 linear; applied to the audio buses) ---
 var volume_master: float = 1.0
@@ -56,6 +61,18 @@ func load_game() -> void:
 	if not has_save():
 		return
 	get_tree().change_scene_to_file(current_level)
+
+
+func set_playing_level(path: String) -> void:
+	# Called by each level on load to record what's currently being played, so the
+	# lose screen can restart the exact level the player died on.
+	current_playing_level = path
+
+
+func restart_level() -> void:
+	# Reload the level currently being played (the one the player died on).
+	if current_playing_level != "":
+		get_tree().change_scene_to_file(current_playing_level)
 
 
 func clear_save() -> void:
