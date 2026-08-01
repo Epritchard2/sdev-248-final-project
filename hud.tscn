@@ -1,22 +1,24 @@
 [gd_scene format=3 uid="uid://hkkauhlt680a"]
 
 [ext_resource type="Script" uid="uid://bei24bbykh7bo" path="res://hud.gd" id="1_37p78"]
+[ext_resource type="Texture2D" uid="uid://3rw0qveb326m" path="res://UI Assets/Orb_HP.png" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://cxw3xjmtxk7yj" path="res://UI Assets/Orb_Frame_Empty.png" id="2_640wx"]
+[ext_resource type="Texture2D" uid="uid://vsp3lfrs1er6" path="res://UI Assets/BGbox_08A.png" id="4_640wx"]
+[ext_resource type="FontFile" uid="uid://bq5rnxiurhpk5" path="res://UI Assets/Enchanted Land.otf" id="5_a2258"]
 
 [sub_resource type="Theme" id="Theme_37p78"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37p78"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.72156864, 0.07058824, 0.16470589, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-corner_detail = 6
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2258"]
+texture = ExtResource("4_640wx")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8sq4i"]
+font = ExtResource("5_a2258")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=1883585838]
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 script = ExtResource("1_37p78")
 
 [node name="Control" type="Control" parent="." unique_id=847681831]
@@ -25,19 +27,26 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HealthBar" type="ProgressBar" parent="Control" unique_id=436563560]
+[node name="HealthBar" type="TextureProgressBar" parent="Control" unique_id=1544819971]
+texture_filter = 1
 layout_mode = 0
-offset_right = 142.0
-offset_bottom = 27.0
+offset_right = 97.0
+offset_bottom = 99.0
 theme = SubResource("Theme_37p78")
-theme_override_styles/fill = SubResource("StyleBoxFlat_37p78")
 max_value = 5.0
 value = 5.0
-show_percentage = false
+fill_mode = 3
+texture_under = ExtResource("2_640wx")
+texture_progress = ExtResource("2_8sq4i")
 
 [node name="KillLabel" type="Label" parent="Control" unique_id=1681436052]
+texture_filter = 1
 layout_mode = 0
-offset_left = 166.0
+offset_left = 110.666664
 offset_top = 2.0
-offset_right = 206.0
-offset_bottom = 25.0
+offset_right = 360.0
+offset_bottom = 106.66667
+theme_override_styles/normal = SubResource("StyleBoxTexture_a2258")
+label_settings = SubResource("LabelSettings_8sq4i")
+horizontal_alignment = 1
+vertical_alignment = 1

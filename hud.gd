@@ -3,7 +3,7 @@ extends CanvasLayer
 ## Stays fixed on screen (CanvasLayer) over the scrolling level.
 ## Drives values only; style the ProgressBar / Label with your own UI assets.
 
-@onready var health_bar: ProgressBar = $Control/HealthBar
+@onready var health_bar: TextureProgressBar = $Control/HealthBar
 @onready var kill_label: Label = $Control/KillLabel
 
 
@@ -34,6 +34,9 @@ func _on_health_changed(current: int, maximum: int) -> void:
 	health_bar.value = current
 
 
-# --- Called by the level manager to update the kill counter ---
 func set_kills(killed: int, total: int) -> void:
-	kill_label.text = "%d / %d" % [killed, total]
+	var remaining := total - killed
+	if remaining <= 0:
+		kill_label.text = "Level Clear!"
+	else:
+		kill_label.text = "Enemies Remaining: %d / %d" % [remaining, total]

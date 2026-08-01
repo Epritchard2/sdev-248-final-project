@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://day5yu1nfb1c0" path="res://player.tscn" id="1_73p4q"]
 [ext_resource type="PackedScene" uid="uid://dleeoh1wgcwfi" path="res://boss.tscn" id="2_esrdm"]
 [ext_resource type="Script" uid="uid://q6ig6n2onp3x" path="res://boss_health_bar.gd" id="3_esrdm"]
+[ext_resource type="PackedScene" uid="uid://bb1seyji3h0mh" path="res://dialogue_box.tscn" id="4_mod6s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esrdm"]
 bg_color = Color(0.64992017, 0, 0.0857104, 1)
@@ -62,6 +63,12 @@ color = Color(0, 0, 0, 1)
 position = Vector2(95.60977, 617.56104)
 
 [node name="Boss" parent="." unique_id=1017396505 instance=ExtResource("2_esrdm")]
-position = Vector2(1013.6586, 616.5854)
+position = Vector2(712.19507, 614.63416)
 melee_cooldown = 1.9
 atk3_shot_interval = 0.9
+dialogue_box_path = NodePath("../DialogueBox")
+prefight_lines = ["Hello you fool.."]
+resurrect_lines = ["YOU THOUGHT THIS WAS OVER?!"]
+predeath_lines = ["THIS WON'T BE THE END!"]
+
+[node name="DialogueBox" parent="." unique_id=1420439826 instance=ExtResource("4_mod6s")]

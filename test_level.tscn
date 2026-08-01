@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://6vmxe1guesfs" path="res://level_manager.gd" id="8_lnbra"]
 [ext_resource type="PackedScene" uid="uid://b74sec15y18ts" path="res://door.tscn" id="9_6emce"]
 [ext_resource type="PackedScene" uid="uid://dosbrfbtef5c8" path="res://health_potion.tscn" id="10_lowby"]
+[ext_resource type="PackedScene" uid="uid://5dc5dykg5v13" path="res://saw_trap.tscn" id="11_58smv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtoym"]
 size = Vector2(3052.5, 81.5)
@@ -59,7 +60,6 @@ position = Vector2(2889, 187)
 
 [node name="HealthPotion" parent="." unique_id=297983478 instance=ExtResource("10_lowby")]
 position = Vector2(211, 206)
-collision_mask = 1
 
 [node name="HUD" parent="." unique_id=1883585838 instance=ExtResource("3_f7g2b")]
 
@@ -90,3 +90,6 @@ zoom = Vector2(1, 1)
 script = ExtResource("8_lnbra")
 door_path = NodePath("../door")
 hud_path = NodePath("../HUD")
+
+[node name="SawTrap" parent="." unique_id=1559718020 instance=ExtResource("11_58smv")]
+position = Vector2(97, 215)

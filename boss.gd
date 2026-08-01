@@ -8,6 +8,10 @@ extends CharacterBody2D
 ## the second time it dies for real.
 ## Emits boss_health_changed(current, max) so a dedicated boss health bar can track it.
 ## Physics tags (search "Newton") match the rest of the project.
+##
+## Dialogue: plays three sets of lines through a DialogueBox — a pre-fight taunt
+## when the player first enters (the fight starts when it closes), a boast after
+## the fake-death resurrect, and a final line before the real death resolves.
 
 # --- Signals (for the boss health bar and win/level logic) ---
 signal boss_health_changed(current: int, max_health: int)
@@ -68,11 +72,19 @@ const ANIM_ATK3_RETURN  := "atk3_return"     # barrage recovery (Loop OFF)
 @export var corpse_linger_time: float = 3.0
 @export_flags_2d_physics var floor_mask_bit: int = 4
 
+# --- Dialogue ---
+@export var dialogue_box_path: NodePath          # the boss room's DialogueBox
+@export var speaker_name: String = "The Brute"
+@export_multiline var prefight_lines: PackedStringArray = []   # before the fight; closing starts it
+@export_multiline var resurrect_lines: PackedStringArray = []  # boast after the fake-death revive
+@export_multiline var predeath_lines: PackedStringArray = []   # final words before the real death
+
 # --- Nodes ---
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $AttackHitbox
 @onready var hitbox_shape: CollisionShape2D = $AttackHitbox/CollisionShape2D
 @onready var detector: Area2D = $PlayerDetector
+@onready var dialogue_box: Node = get_node_or_null(dialogue_box_path)
 
 # --- State ---
 enum State { IDLE, CHASE, MELEE, JUMP_BACK, ATK3, HURT, DYING, RESURRECT, DEAD }
@@ -83,6 +95,7 @@ var target: Node2D = null
 var enraged: bool = false
 var has_revived: bool = false
 var active: bool = false        # gate: stays dormant until activate() is called (e.g. after dialogue)
+var prefight_done: bool = false  # the pre-fight dialogue only plays once
 
 var decision_timer: float = 0.0
 var cast_timer: float = 0.0      # counts down; boss can only cast when this hits 0
@@ -112,8 +125,8 @@ func _ready() -> void:
 	detector.body_exited.connect(_on_detector_body_exited)
 	# Announce starting health so a bar can size itself.
 	boss_health_changed.emit(health, max_health)
-	activate()
-
+	# Note: no activate() here — the boss stays dormant until the pre-fight
+	# dialogue finishes (or activates immediately if no lines are set).
 
 
 func _physics_process(delta: float) -> void:
@@ -316,17 +329,29 @@ func _fire_arc_shot() -> void:
 # --- Detection ---
 func _on_detector_body_entered(body: Node) -> void:
 	if body.has_method("take_hit"):
-		# Remember the player, but don't start chasing until the boss is active.
+		# Remember the player. The first time the player is seen, run the
+		# pre-fight dialogue; the fight begins when it closes.
 		target = body
-		if active and state == State.IDLE:
+		if not prefight_done:
+			prefight_done = true
+			_run_prefight()
+		elif active and state == State.IDLE:
 			state = State.CHASE
 
 
-func _on_detector_body_exited(body: Node) -> void:
+func _on_detector_body_exited(_body: Node) -> void:
 	# The boss commits once it's fighting — it doesn't drop the player and stand
 	# down just because they briefly left the detector. Detection only seeds the
 	# target; the fight is arena-bound anyway.
 	pass
+
+
+# --- Pre-fight dialogue, then activate ---
+func _run_prefight() -> void:
+	# Play the pre-fight lines (boss stays dormant/invulnerable via `active`),
+	# then start the fight. If there are no lines or no box, just activate.
+	await _play_dialogue_and_wait(prefight_lines)
+	activate()
 
 
 # --- Activation (call this to start the fight, e.g. when dialogue closes) ---
@@ -419,7 +444,7 @@ func _begin_death_sequence() -> void:
 
 
 func _fake_death() -> void:
-	# Play death, lie there a beat, then resurrect enraged.
+	# Play death, lie there a beat, then resurrect enraged — boasting on the way up.
 	state = State.DYING
 	sprite.play(ANIM_DEATH)
 	await sprite.animation_finished
@@ -427,6 +452,9 @@ func _fake_death() -> void:
 	state = State.RESURRECT
 	sprite.play(ANIM_RESURRECT)
 	await sprite.animation_finished
+	# Boast before rejoining the fight. The state stays RESURRECT during the box,
+	# so the AI holds and the boss keeps its pose (no moving/attacking).
+	await _play_dialogue_and_wait(resurrect_lines)
 	# Come back enraged with partial health.
 	has_revived = true
 	enraged = true
@@ -437,13 +465,36 @@ func _fake_death() -> void:
 
 func _real_death() -> void:
 	state = State.DEAD
-	boss_died.emit()
 	sprite.play(ANIM_DEATH)
 	detector.set_deferred("monitoring", false)
 	collision_layer = 0
 	collision_mask = floor_mask_bit
+	await sprite.animation_finished
+	# Final words before the win flow resolves. Emitting boss_died AFTER the
+	# dialogue means the health bar's end sequence (which loads the win scene)
+	# waits for the boast to finish.
+	await _play_dialogue_and_wait(predeath_lines)
+	boss_died.emit()
 	await get_tree().create_timer(corpse_linger_time).timeout
 	queue_free()
+
+
+# --- Dialogue helper ---
+func _play_dialogue_and_wait(dlines: PackedStringArray) -> void:
+	# Start the box with these lines and wait for it to close. No-op (returns
+	# immediately) if there's no box or no lines, so the fight flow is unaffected
+	# when dialogue isn't set up.
+	if dialogue_box == null:
+		dialogue_box = get_node_or_null(dialogue_box_path)
+	if dialogue_box == null or not dialogue_box.has_method("start"):
+		return
+	if dlines.is_empty():
+		return
+	var built: Array = []
+	for l in dlines:
+		built.append({ "name": speaker_name, "text": l })
+	dialogue_box.start(built)
+	await dialogue_box.finished
 
 
 func _update_animation() -> void:
